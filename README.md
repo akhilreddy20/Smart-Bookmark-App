@@ -13,8 +13,7 @@ A modern, real-time bookmark management application built with Next.js, Supabase
 - 🌐 **Multi-device Support** - Access your bookmarks from anywhere
 
 ## 🚀 Live Demo
-
-(https://your-app.vercel.app)
+https://smart-bookmark-app-seven-jet.vercel.app
 
 ## 🛠️ Tech Stack
 
@@ -37,7 +36,7 @@ A modern, real-time bookmark management application built with Next.js, Supabase
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/yourusername/smart-bookmark-app.git
+git clone https://github.com/akhilreddy20/smart-bookmark-app.git
 cd smart-bookmark-app
 npm install
 ```
@@ -52,9 +51,9 @@ npm install
 ### 3. Set Up Google OAuth
 
 1. Create OAuth 2.0 Client at [Google Cloud Console](https://console.cloud.google.com)
-2. Add redirect URIs:
+2. Added redirect URIs:
    - Development: `http://localhost:3000/auth/google/callback`
-   - Production: `https://your-app.vercel.app/auth/google/callback`
+   - Production: `https://smart-bookmark-app-seven-jet.vercel.app/auth/google/callback`
 
 ### 4. Environment Variables
 
@@ -73,7 +72,7 @@ GOOGLE_CLIENT_SECRET=your_client_secret
 npm run dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000)
+Visit [http://localhost:3000]
 
 
 
@@ -89,10 +88,10 @@ git remote add origin https://github.com/akhilreddy20/smart-bookmark-app.git
 git push -u origin main
 ```
 
-#### 2. Deploy on Vercel
+#### 2. Deployed on Vercel
 
 1. Go to [vercel.com/new](https://vercel.com/new)
-2. Import your GitHub repository
+2. Imported the project GitHub repository
 3. Configure project:
    - **Framework Preset:** Next.js
    - **Build Command:** `npm run build`
@@ -104,14 +103,14 @@ git push -u origin main
    NEXT_PUBLIC_GOOGLE_CLIENT_ID
    GOOGLE_CLIENT_SECRET
    ```
-5. Click **Deploy**
+5.  Deployed
 
-#### 3. Update Google OAuth
+#### 3. Updated Google OAuth
 
-After deployment
+After deployment added the deployemnet url
 
-1. Authorized JavaScript origins: `https://your-app.vercel.app`
-2. Authorized redirect URIs: `https://your-app.vercel.app/auth/google/callback`
+1. Authorized JavaScript origins: `https://smart-bookmark-app-seven-jet.vercel.app`
+2. Authorized redirect URIs: `https://smart-bookmark-app-seven-jet.vercel.app/auth/google/callback`
 
 
 ## 🐛 Problems Encountered & Solutions
@@ -195,9 +194,6 @@ window.location.href = googleAuthUrl.toString()
    }
    ```
 
-**Result:** Changes now appear instantly across all tabs, browsers, and devices ✅
-
-**Files Modified:** `components/BookmarksList.js`, `app/globals.css` (added animations)
 
 ### Problem 3: Privacy - Users Seeing Each Other's Data
 
@@ -233,7 +229,7 @@ window.location.href = googleAuthUrl.toString()
    - Verified User B sees zero bookmarks from User A
    - Tested across all CRUD operations
 
-**Result:** Complete data isolation - users can only access their own bookmarks ✅
+**Result:** Complete data isolation - users can only access their own bookmarks
 
 **Security Level:** Database-enforced (cannot be bypassed from client code)
 
@@ -251,67 +247,31 @@ window.location.href = googleAuthUrl.toString()
 1. **Added Both URLs to Google Console:**
    ```
    Development: http://localhost:3000/auth/google/callback
-   Production: 
+   Production: https://smart-bookmark-app-seven-jet.vercel.app/
    ```
-   ⚠️ Note: No trailing slashes!
 
 2. **Added Authorized JavaScript Origins:**
    ```
    http://localhost:3000
+   https://smart-bookmark-app-seven-jet.vercel.app/
    ```
 
 3. **Updated Supabase Site URL:**
    - Development: `http://localhost:3000`
-   - Production: 
+   - Production: `https://smart-bookmark-app-seven-jet.vercel.app`
 
 4. **Created Clear Documentation:**
    - Exact format requirements
    - Common mistakes to avoid
    - Troubleshooting guide
 
-**Result:** OAuth works seamlessly in both dev and production ✅
+**Result:** OAuth works seamlessly in both dev and production
 
 **Prevention Tips:**
 - Always use exact URLs (copy-paste, don't type)
 - Test in incognito window after changes
 - Wait 5-10 minutes for Google to propagate changes
 
-### Problem 5: Environment Variables Not Working After Deployment
-
-**Issue:** App couldn't connect to Supabase after deploying to Vercel
-
-**Root Cause:**
-- Forgot to add environment variables in Vercel dashboard
-- Confusion about `NEXT_PUBLIC_` prefix
-- Some variables had wrong values (copied from wrong env)
-
-**Solution:**
-
-1. **Understood the Prefix Rule:**
-   - `NEXT_PUBLIC_*` = Exposed to browser (safe for client-side)
-   - No prefix = Server-side only (secrets)
-
-2. **Correct Configuration:**
-   ```env
-   NEXT_PUBLIC_SUPABASE_URL=...      # Public ✅
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=... # Public ✅ (designed to be)
-   NEXT_PUBLIC_GOOGLE_CLIENT_ID=...  # Public ✅
-   GOOGLE_CLIENT_SECRET=...          # Private ❌ (no prefix)
-   ```
-
-3. **Added Variables in Vercel:**
-   - Project Settings → Environment Variables
-   - Added all four variables
-   - Set for Production, Preview, and Development
-
-4. **Created `.env.example`:**
-   - Template for other developers
-   - Documents which variables are needed
-   - Prevents deployment mistakes
-
-**Result:** App connects to Supabase successfully in production ✅
-
-**Lesson Learned:** Always double-check env vars before deploying!
 
 ### Problem 6: Bookmarks Disappearing After Page Refresh (Early Bug)
 
